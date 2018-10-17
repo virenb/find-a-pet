@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PetForm = (props) => {
-  const { zip, handleChange } = props;
+  const {
+    zip, handleAnimalChange, handleZipChange, handleSubmit, animal,
+  } = props;
   return (
     <div>
-      <form>
-        <input zip={zip} onChange={handleChange} />
-        <select multiple>
+      <form onSubmit={handleSubmit}>
+        <input zip={zip} onChange={handleZipChange} placeholder="Enter valid US zipcode" />
+        <select animal={animal} onChange={handleAnimalChange}>
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="bird">Bird</option>
         </select>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onSubmit={handleSubmit} />
       </form>
     </div>
   );
@@ -20,7 +22,10 @@ const PetForm = (props) => {
 
 PetForm.propTypes = {
   zip: PropTypes.string.isRequired,
-  handleChange: PropTypes.function.isRequired,
+  animal: PropTypes.string.isRequired,
+  handleZipChange: PropTypes.func.isRequired,
+  handleAnimalChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default PetForm;
