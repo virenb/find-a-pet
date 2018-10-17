@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 const PetForm = (props) => {
   const {
     zip, handleAnimalChange, handleZipChange, handleSubmit, animal,
   } = props;
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input zip={zip} onChange={handleZipChange} placeholder="Enter valid US zipcode" />
-        <select animal={animal} onChange={handleAnimalChange}>
+    <div style={{ maxWidth: '600px', margin: '0 auto'}}>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '20px'}}>
+        <Input zip={zip} onChange={handleZipChange} placeholder="Enter valid US zipcode" required />
+        <Input type="select" animal={animal} onChange={handleAnimalChange}>
           <option value="dog">Dog</option>
           <option value="cat">Cat</option>
           <option value="bird">Bird</option>
-        </select>
-        <input type="submit" value="Submit" onSubmit={handleSubmit} />
-      </form>
+        </Input>
+        <Button className="btn" style={{ marginTop: '20px', backgroundColor: 'cornflowerblue', color: 'white' }}>Submit</Button>
+      </Form>
     </div>
   );
 };
