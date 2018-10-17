@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import PetForm from './components/PetForm';
+import Results from './components/Results';
 import fetchJsonp from 'fetch-jsonp';
 import './App.css';
 
 class App extends Component {
   state = {
     animal: 'dog',
-    zip: ''
+    zip: '',
+    results: []
   }
 
   handleZipChange = event => {
     this.setState({ zip: event.target.value })
-    console.log(this.state);
   }
 
    handleAnimalChange = event => {
     this.setState({ animal: event.target.value })
-    console.log(this.state);
   }
 
   handleSubmit = event => {
@@ -31,14 +31,13 @@ class App extends Component {
     }
   )
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => this.setState({ results: data.petfinder.pets.pet }))
     .catch(err => console.log(err));
-    this.setState({ zip: '', animal: '' });
   }
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ marginTop: '20px'}}>
         <Header />
         <PetForm 
           zip={this.state.zip} 
@@ -47,6 +46,7 @@ class App extends Component {
           handleSubmit={this.handleSubmit} 
           animal={this.state.animal}
         />
+        <Results results={this.state.results} />
       </div>
     );
   }
