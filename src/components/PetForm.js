@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 
 const PetForm = (props) => {
   const {
-    zip, handleAnimalChange, handleZipChange, handleSubmit, animal,
+    zip, handleAnimalChange, handleZipChange, handleSubmit, animal
   } = props;
   return (
     <div style={{ maxWidth: '600px', margin: '0 auto'}}>
@@ -26,7 +26,7 @@ PetForm.propTypes = {
   animal: PropTypes.string.isRequired,
   handleZipChange: PropTypes.func.isRequired,
   handleAnimalChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default PetForm;

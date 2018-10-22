@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import validateZip from './valid';
 import Header from './components/Header';
 import PetForm from './components/PetForm';
 import Results from './components/Results';
@@ -16,13 +17,17 @@ class App extends Component {
     this.setState({ zip: event.target.value })
   }
 
-   handleAnimalChange = event => {
+  handleAnimalChange = event => {
     this.setState({ animal: event.target.value })
   }
 
   handleSubmit = event => {
     const KEY = 'e653e7e44448bbaeb4128d62235e3253';
     event.preventDefault();  
+    if (!validateZip(this.state.zip)) {
+      alert('Please enter valid zipcode');
+      return;
+    }
     console.log(this.state);
     fetchJsonp(
     `http://api.petfinder.com/pet.find?format=json&key=${KEY}&animal=${this.state.animal}&location=${this.state.zip}&callback=callback`,
